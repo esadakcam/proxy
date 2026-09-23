@@ -1,0 +1,6 @@
+{
+  "caCert": "ca.crt",
+  "caKey": "ca.key",
+  "proxyBase": "http://mynexus",
+  "domains": ["example.api.com"]
+}
