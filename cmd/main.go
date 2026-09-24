@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/esadakcam/proxy/internal/cert"
 	"github.com/esadakcam/proxy/internal/config"
+	"github.com/esadakcam/proxy/internal/web"
 )
 
 func main() {
@@ -19,10 +19,12 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println(cfg)
 	pair, err := cert.GenerateKeyAndCert(cfg.Domains, cfg.CaCert, cfg.CaKey)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(pair)
+
+	if err := web.Serve(cfg, pair); err != nil {
+		panic(err)
+	}
 }
